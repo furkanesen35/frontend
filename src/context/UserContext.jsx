@@ -18,7 +18,7 @@ const UserProvider = ({ children }) => {
  const csrftoken = getCookie('csrftoken');
 
  const axiosInstance = axios.create({
-  baseURL: process.env.DOMAIN_URL,
+  baseURL: process.env.REACT_APP_DOMAIN_URL,
   timeout: 10000,
   headers:  {
    'X-CSRFToken': csrftoken,
