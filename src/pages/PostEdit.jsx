@@ -21,7 +21,7 @@ const PostEdit = ({ slug }) => {
 
 // edit part
  useEffect(() => {
-  axios.get('http://localhost:8000/get_category/')
+  axios.get('https://backend-e4ds.onrender.com/get_category/')
    .then(response => {
     setCategories(response.data);
    })

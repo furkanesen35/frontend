@@ -19,7 +19,7 @@ const Profile = () => {
   };
 
   try {
-   await axios.put(`http://127.0.0.1:8000/account/change_profile/${profile.id}`, data);
+   await axios.put(`https://backend-e4ds.onrender.com/account/change_profile/${profile.id}`, data);
   } catch (error) {
    console.error('Error submitting profile:', error);
   }

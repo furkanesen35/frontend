@@ -18,7 +18,8 @@ const UserProvider = ({ children }) => {
  const csrftoken = getCookie('csrftoken');
 
  const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_DOMAIN_URL,
+  // baseURL: process.env.REACT_APP_DOMAIN_URL,
+  baseURL: 'https://backend-e4ds.onrender.com/',
   timeout: 10000,
   headers:  {
    'X-CSRFToken': csrftoken,
