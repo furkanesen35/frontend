@@ -17,7 +17,7 @@ function App() {
  useEffect(() => {
   const fetchedData = async () => {
    try {
-    const response = await axios.get("http://localhost:8000/post/get/")
+    const response = await axios.get("https://backend-e4ds.onrender.com/post/get/")
     setData(response.data)
    } catch (error) {
     console.log(error);

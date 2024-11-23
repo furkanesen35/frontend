@@ -41,12 +41,18 @@ const Post = () => {
   formData.append('image', imageFile);
 
   try {
-   const response = await axiosInstance.post("/post/add/", formData);
+   const response = await axiosInstance.post("/post/add/", formData, {
+    headers: {
+     'Content-Type': 'multipart/form-data',
+     'X-CSRFToken': csrftoken,
+    },
+   });
    console.log(response.data);
   } catch (error) {
-   console.error('Error submitting post:', error);
+    console.error('Error submitting post:', error.response?.data || error.message);
   }
- };
+};
+
 
  const handleImageChange = (e) => {
   setImageFile(e.target.files[0]);
