@@ -15,7 +15,6 @@ const Post = () => {
  const csrftoken = getCookie('csrftoken');
  
  const headers = {
-  'Content-Type': 'multipart/form-data',
   'X-CSRFToken': csrftoken,
   Authorization : `Bearer ${userToken}`,
  };
@@ -32,7 +31,6 @@ const Post = () => {
 
  const submitForm = async (e) => {
   e.preventDefault();
-
   const formData = new FormData();
   formData.append('title', e.target.title.value);
   formData.append('content', e.target.content.value);
@@ -40,19 +38,17 @@ const Post = () => {
   formData.append('category', e.target.category.value);
   formData.append('image', imageFile);
 
+  for (let [key, value] of formData.entries()) {
+    console.log(`${key}:`, value);
+  }
+
   try {
-   const response = await axiosInstance.post("/post/add/", formData, {
-    headers: {
-     'Content-Type': 'multipart/form-data',
-     'X-CSRFToken': csrftoken,
-    },
-   });
-   console.log(response.data);
+    const response = await axiosInstance.post('/post/add/', formData);
+    console.log(response.data);
   } catch (error) {
     console.error('Error submitting post:', error.response?.data || error.message);
   }
-};
-
+ };
 
  const handleImageChange = (e) => {
   setImageFile(e.target.files[0]);
@@ -63,7 +59,7 @@ const Post = () => {
    <div>
     Post your pictures
    </div>
-   <form className='flex flex-col w-[300px]' action="" method='POST' onSubmit={submitForm} encType="multipart/form-data">
+   <form className="flex flex-col w-[300px]" action="" method="POST" onSubmit={submitForm} encType="multipart/form-data" >
     <label htmlFor="title">Title</label>
     <input type="text" name='title' id='title' className='text-black' />
     <label htmlFor="content">Content</label>
