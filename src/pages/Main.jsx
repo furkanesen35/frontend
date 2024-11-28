@@ -28,7 +28,7 @@ const Main = () => {
       <li key={index} className='flex flex-col justify-center items-center h-[600px] w-[300px]'>
        <a href={`/detail/${post.slug}`}><div>Title: {post.title}</div></a>
        <a href={`/detail/${post.slug}`} className='mw-[300px] '>
-        {/* <img src={`https://backend-e4ds.onrender.com/${post.image}`} alt="" /> */}
+        <img src={`https://backend-e4ds.onrender.com/${post.image}`} alt="" />
        </a> 
        <div>Content: {post.content}</div>
        <div>Category: {categories.map(category => category.id === post.category ? category.name : null) }</div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 
 const Post = () => {
@@ -39,15 +38,16 @@ const Post = () => {
   formData.append('image', imageFile);
 
   for (let [key, value] of formData.entries()) {
-    console.log(`${key}:`, value);
+   console.log(`${key}:`, value);
   }
 
   try {
-    const response = await axiosInstance.post('/post/add/', formData);
-    console.log(response.data);
+   const response = await axiosInstance.post('/post/add/', formData);
+   console.log(response.data);
   } catch (error) {
-    console.error('Error submitting post:', error.response?.data || error.message);
+   console.error('Error submitting post:', error.response?.data || error.message);
   }
+  console.log(userToken);
  };
 
  const handleImageChange = (e) => {
