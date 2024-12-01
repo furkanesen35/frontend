@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { toast, ToastContainer } from 'react-toastify'; // Import toast
 import { UserContext } from '../context/UserContext';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Post = () => {
  const { userToken, axiosInstance } = useContext(UserContext);
@@ -25,6 +27,7 @@ const Post = () => {
    })
    .catch(error => {
     console.error('Error fetching categories:', error);
+    toast.error('Failed to fetch categories'); // Show error message
    });
  },[]);
 
@@ -44,10 +47,11 @@ const Post = () => {
   try {
    const response = await axiosInstance.post('/post/add/', formData);
    console.log(response.data);
+   toast.success('Post created successfully!'); // Show success message
   } catch (error) {
    console.error('Error submitting post:', error.response?.data || error.message);
+   toast.error('Failed to create post'); // Show error message
   }
-  console.log(userToken);
  };
 
  const handleImageChange = (e) => {
@@ -59,6 +63,7 @@ const Post = () => {
    <div>
     Post your pictures
    </div>
+   <ToastContainer />
    <form className="flex flex-col w-[300px]" action="" method="POST" onSubmit={submitForm} encType="multipart/form-data" >
     <label htmlFor="title">Title</label>
     <input type="text" name='title' id='title' className='text-black' />
@@ -74,7 +79,7 @@ const Post = () => {
     <label htmlFor="category">Category</label>
     <select name="category" id="category" className='text-black' >
      {categories.map((category, index) => (
-      <option key={index} value={category.id} className='text-black' value2={category.name}>{category.name}</option>
+      <option key={index} value={category.id} className='text-black'>{category.name}</option>
      ))}
     </select>
     <input type="submit" />

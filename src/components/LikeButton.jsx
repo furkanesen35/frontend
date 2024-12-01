@@ -32,9 +32,9 @@ const LikeButton = ({ post }) => {
  }
 
  return (
-  <div>
+  <div className='flex justify-center items-center flex-col'>
    <div>Likes: {post.likes.length}</div>
-   <button onClick={lastHandleLike}>{post.slug}</button>
+   <button className='bg-blue-500 w-[140px] hover:bg-blue-600 text-white font-bold py-2 px-4 rounded m-[12px] text-center' onClick={lastHandleLike}>Like</button>
   </div>
  )
 }

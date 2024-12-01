@@ -29,12 +29,12 @@ const Main = () => {
        <a href={`/detail/${post.slug}`}><div>Title: {post.title}</div></a>
        <a href={`/detail/${post.slug}`} className='mw-[300px] '>
         <img src={`https://backend-e4ds.onrender.com/${post.image}`} alt="" />
+        {/* <img src={`http://127.0.0.1:8000/${post.image}`} alt="" /> */}
        </a> 
        <div>Content: {post.content}</div>
        <div>Category: {categories.map(category => category.id === post.category ? category.name : null) }</div>
         {post.comments.length ? <div>Comments: {post.comments.map((e, index) => ( <div key={index}>{e.content}</div>))}</div> : <></>}
        <LikeButton post={post}/>
-       <div>Slug: {post.slug}</div>
       </li>
      ))}
     </ul>

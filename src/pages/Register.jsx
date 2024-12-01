@@ -11,6 +11,7 @@ const Register = () => {
   }
   const response = axios
    .post("https://backend-e4ds.onrender.com/account/register/", data)
+  //  .post("http://127.0.0.1:8000/account/register/", data)
    .then(res => console.log(res))
    .catch(error => console.log(error))
    console.log(response)
