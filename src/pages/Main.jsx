@@ -22,7 +22,7 @@ const Main = () => {
   
  return (
   <>{userToken ? 
-   <div className='flex justify-center bg-black text-white'>
+   <div className='flex justify-center bg-black text-white min-h-dvh'>
     <ul>
      {posts.map((post, index) => (
       <li key={index} className='flex flex-col justify-center items-center h-[600px] w-[300px]'>
