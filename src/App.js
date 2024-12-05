@@ -29,18 +29,18 @@ function App() {
  return (
   <BrowserRouter>
   <Navbar/>
-    <Routes>
-      <Route path="/logout" element={<LogoutComponent/>}/>
-      <Route path="/post" element={<Post/>}/>
-      <Route path="/category" element={<AddCategory/>}/>
-      <Route path="/" element={<Main/>}/>
-      <Route path="/register" element={<Register/>}/>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/profile" element={<Profile/>}/>
-      {data.map((post, index) => {
-        return <Route key={index} path={`/detail/${post.slug}`} element={<PostEdit slug={post.slug} />}/>
-      })}
-    </Routes>
+   <Routes>
+    <Route path="/logout" element={<LogoutComponent/>}/>
+    <Route path="/post" element={<Post/>}/>
+    <Route path="/category" element={<AddCategory/>}/>
+    <Route path="/" element={<Main/>}/>
+    <Route path="/register" element={<Register/>}/>
+    <Route path="/login" element={<Login/>}/>
+    <Route path="/profile" element={<Profile/>}/>
+    {data.map((post, index) => {
+      return <Route key={index} path={`/detail/${post.slug}`} element={<PostEdit slug={post.slug} />}/>
+    })}
+   </Routes>
   </BrowserRouter>
  );
 }

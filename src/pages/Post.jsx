@@ -40,10 +40,6 @@ const Post = () => {
   formData.append('category', e.target.category.value);
   formData.append('image', imageFile);
 
-  for (let [key, value] of formData.entries()) {
-   console.log(`${key}:`, value);
-  }
-
   try {
    const response = await axiosInstance.post('/post/add/', formData);
    console.log(response.data);
@@ -59,9 +55,9 @@ const Post = () => {
  };
 
  return (
-  <div className='flex flex-col items-center bg-black h-[100vh] text-white'>
-   <div>
-    Post your pictures
+  <div className='flex flex-col justify-center items-center bg-black h-[100vh] text-white'>
+   <div className=''>
+    You can post your pictures
    </div>
    <ToastContainer />
    <form className="flex flex-col w-[300px]" action="" method="POST" onSubmit={submitForm} encType="multipart/form-data" >

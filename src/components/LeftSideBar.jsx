@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserContext';
 const LeftSideBar = () => {
  const { userToken } = useContext(UserContext);
  return (
-  <div className="fixed top-0 bottom-0 bg-gray-1000 text-white w-[37.5%] flex">
+  <div className="fixed top-0 bottom-0 bg-gray-1000 text-white w-[30%] flex">
    <div className='flex flex-col w-[100%] items-end '>
     <div className='flex flex-col items-center w-[250px] h-[100vh] pt-[70px] mx-[20px] bg-gray-900'>
      <Link className="bg-blue-500 w-[140px] hover:bg-blue-600 text-white font-bold py-2 px-4 rounded m-[12px] text-center" to="/">Home</Link>

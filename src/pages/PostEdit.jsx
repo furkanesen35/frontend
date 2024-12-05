@@ -95,7 +95,7 @@ const PostEdit = ({ slug }) => {
  return (
   <>
    {data?.author === profile?.id ? 
-    (<div className='flex justify-center bg-black h-[100vh] text-white'>
+    (<div className='flex justify-center items-center bg-black h-[100vh] text-white'>
      <form className='flex flex-col w-[300px]' action="" method='POST' onSubmit={submitChanges}>
       <label htmlFor="title">Title</label>
       <input type="text" name='title' id='title' className='text-black' defaultValue={data.title} />
@@ -118,7 +118,7 @@ const PostEdit = ({ slug }) => {
      </form>
     </div>)
     : 
-    (<div className='flex flex-col items-center bg-black h-[100vh] text-white'>
+    (<div className='flex flex-col items-center bg-black h-[100vh] text-white pt-[100px]'>
      <div>Title: {data?.title}</div>
      <div>Content: {data?.content}</div>
      <div>Category: {data?.category}</div>
