@@ -2,12 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { UserContext } from '../context/UserContext';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 const Post = () => {
  const { userToken, axiosInstance } = useContext(UserContext);
  const [categories, setCategories] = useState([]);
  const [imageFile, setImageFile] = useState(null);
-
+ const navigate = useNavigate();
+ 
  function getCookie(name) {
   const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
   return cookieValue ? cookieValue.pop() : '';
@@ -43,7 +45,10 @@ const Post = () => {
   try {
    const response = await axiosInstance.post('/post/add/', formData);
    console.log(response.data);
-   toast.success('Post created successfully!', { position: 'top-center' });
+   toast.success('Post created successfully! Redirecting to Main Page', { position: 'top-center' });
+   setTimeout(() => {
+    navigate("/");
+   }, 3500);
   } catch (error) {
    console.error('Error submitting post:', error.response?.data || error.message);
    toast.error('Failed to create post', { position: 'top-center' });

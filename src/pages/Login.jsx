@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
  const { loginUser, axiosInstance } = useContext(UserContext);
+ const navigate = useNavigate();
  const submitForm = (e) => {
   e.preventDefault();
   const data = {
@@ -17,7 +19,10 @@ const Login = () => {
     if (res.data) {
      const token = res.data.access;
      loginUser(token);
-     toast.success("Login successful!", { position: "top-center" });
+     toast.success("Login successful! Redirecting to Main Page", { position: "top-center" });
+     setTimeout(() => {
+      navigate("/");
+     }, 3500);
     }
    })
    .catch((error) => {

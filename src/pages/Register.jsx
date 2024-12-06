@@ -2,8 +2,10 @@ import React from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+ const navigate = useNavigate();
  const submitForm = async (e) => {
   e.preventDefault();
   const data = {
@@ -13,7 +15,10 @@ const Register = () => {
   };
   try {
    const response = await axios.post("https://backend-e4ds.onrender.com/account/register/", data);
-   toast.success("Registration successful!", { position: "top-center" });
+   toast.success("Registration successful!. Redirecting to Login Page", { position: "top-center" });
+   setTimeout(() => {
+    navigate("/login");
+   }, 3500);
   } catch (error) {
    toast.error("Registration failed. Please try again.", {
     position: "top-center",

@@ -42,7 +42,7 @@ const Main = () => {
     </ul>
    </div> : 
    <div className="flex flex-col justify-center items-center bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen text-white">
-    <p className="text-lg mb-4">Please
+    <p className="text-lg mb-4">Welcome to my Social Platform.<br/> Please
      <a href="/login" className="text-blue-500 hover:underline mx-2 transition-all duration-300">Login</a>
      or
      <a href="/register" className="text-blue-500 hover:underline mx-2 transition-all duration-300">Register</a>
