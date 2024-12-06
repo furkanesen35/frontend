@@ -9,6 +9,7 @@ const UserProvider = ({ children }) => {
  const [userToken, setUserToken] = useState(localStorage.getItem("token"));
  const [posts, setPosts] = useState([]);
  const [profile, setProfile] = useState(null);
+ const [users, setUsers] = useState([]);
 
  function getCookie(name) {
   const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
@@ -67,8 +68,19 @@ const UserProvider = ({ children }) => {
    }
   }
 
+ useEffect(() => {
+  axios
+   .get('https://backend-e4ds.onrender.com/account/all_users/')
+   .then(response => {
+     setUsers(response.data);
+   })
+   .catch(error => {
+    console.error('Error fetching users:', error);
+   });
+ }, []);
+
  return (
-  <UserContext.Provider value={{ userToken, loginUser, logoutUser, posts, fetchProfile, profile, fetchedData, axiosInstance }}>
+  <UserContext.Provider value={{ userToken, loginUser, logoutUser, posts, fetchProfile, profile, fetchedData, axiosInstance, users }}>
    {children}
   </UserContext.Provider>
  );

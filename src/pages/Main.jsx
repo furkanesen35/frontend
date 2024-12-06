@@ -3,7 +3,7 @@ import { UserContext } from '../context/UserContext';
 import LikeButton from '../components/LikeButton';
 
 const Main = () => {
- const { userToken, posts, fetchedData, axiosInstance } = useContext(UserContext);
+ const { userToken, posts, fetchedData, axiosInstance, users } = useContext(UserContext);
  const [categories, setCategories] = useState([]);
 
  useEffect(() => {
@@ -15,7 +15,7 @@ const Main = () => {
     console.error('Error fetching categories:', error);
    });
  },[]);
-  
+
  useEffect(() => {
   fetchedData()
  }, [])
@@ -35,20 +35,20 @@ const Main = () => {
        </div>
        <div className='p-[4px]'>Category: {categories.map(category => category.id === post.category ? category.name : null) }</div>
        <div className='p-[4px]'>Description: {post.content}</div>
-       {post.comments.length ? <div className='w-[100%] h-[150px] rounded-[5px] border border-white p-[5px]'>Comments: {post.comments.map((e, index) => ( <div key={index}>{e.content}</div>))}</div> : <></>}
+       {post.comments.length ? <div className='w-[100%] h-[150px] rounded-[5px] border border-white p-[5px]'>Comments: {post.comments.map((e, index) => (<div key={index}>{e.content}</div>))}</div> : <></>}
        <LikeButton post={post}/>
       </li>
      ))}
     </ul>
    </div> : 
-   <div className='flex justify-center bg-black h-[1000vh] text-white'>
-    Please
-    <a href="/login">
-     Login
-    </a>
+   <div className="flex flex-col justify-center items-center bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen text-white">
+    <p className="text-lg mb-4">Please
+     <a href="/login" className="text-blue-500 hover:underline mx-2 transition-all duration-300">Login</a>
+     or
+     <a href="/register" className="text-blue-500 hover:underline mx-2 transition-all duration-300">Register</a>
+    </p>
    </div>
-  }
-  </>
+  }</>
  )
 }
 

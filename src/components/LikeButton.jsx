@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import axios from "axios"
 import { UserContext } from '../context/UserContext';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 
 const LikeButton = ({ post }) => {
  const { userToken, handleLike, fetchedData, axiosInstance } = useContext(UserContext);
@@ -26,8 +28,9 @@ const LikeButton = ({ post }) => {
   console.log(response.status);
   if (response.status === 200) {
    fetchedData()
+   toast.success('Liked', { position: 'top-center' });
   } else {
-   // console.log(response.status);
+   console.log(response.status);
   }
  }
 

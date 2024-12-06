@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { toast, ToastContainer } from 'react-toastify'; // Import toast
+import { toast, ToastContainer } from 'react-toastify';
 import { UserContext } from '../context/UserContext';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -27,7 +27,7 @@ const Post = () => {
    })
    .catch(error => {
     console.error('Error fetching categories:', error);
-    toast.error('Failed to fetch categories'); // Show error message
+    toast.error('Failed to fetch categories', { position: 'top-center' });
    });
  },[]);
 
@@ -43,10 +43,10 @@ const Post = () => {
   try {
    const response = await axiosInstance.post('/post/add/', formData);
    console.log(response.data);
-   toast.success('Post created successfully!'); // Show success message
+   toast.success('Post created successfully!', { position: 'top-center' });
   } catch (error) {
    console.error('Error submitting post:', error.response?.data || error.message);
-   toast.error('Failed to create post'); // Show error message
+   toast.error('Failed to create post', { position: 'top-center' });
   }
  };
 
@@ -55,30 +55,26 @@ const Post = () => {
  };
 
  return (
-  <div className='flex flex-col justify-center items-center bg-black h-[100vh] text-white'>
-   <div className=''>
-    You can post your pictures
-   </div>
+  <div className="flex flex-col justify-center items-center bg-black h-[100vh] text-white px-4">
+   <div className="mb-8 text-center text-2xl font-semibold">You can Post your Pictures!</div>
    <ToastContainer />
-   <form className="flex flex-col w-[300px]" action="" method="POST" onSubmit={submitForm} encType="multipart/form-data" >
-    <label htmlFor="title">Title</label>
-    <input type="text" name='title' id='title' className='text-black' />
-    <label htmlFor="content">Content</label>
-    <textarea name="content" id="content" cols="30" rows="10" className='text-black' />
-    <label htmlFor="image">Image</label>
-    <input type="file" name="image" id="image" accept='image/*' onChange={handleImageChange} />
-    <label htmlFor="status">Status</label>
-    <select name="status" id="status" className='text-black'>
-     <option value="d" className='text-black'>Draft</option>
-     <option value="p" className='text-black'>Published</option>
+   <form className="flex flex-col bg-gray-800 rounded-lg shadow-lg p-6 w-[90%] max-w-md" action="" method="POST" onSubmit={submitForm} encType="multipart/form-data">
+    <label htmlFor="title" className="mb-2 font-medium">Title</label>
+    <input type="text" name="title" id="title" className="mb-4 p-2 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+    <label htmlFor="content" className="mb-2 font-medium">Description</label>
+    <textarea name="content" id="content" cols="30" rows="5" className="mb-4 p-2 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+    <label htmlFor="image" className="mb-2 font-medium">Image</label>
+    <input type="file" name="image" id="image" accept="image/*" onChange={handleImageChange} className="mb-4 p-2 bg-gray-700 text-gray-400 rounded-lg"/>
+    <label htmlFor="status" className="mb-2 font-medium">Status</label>
+    <select name="status" id="status" className="mb-4 p-2 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+     <option value="d" className="text-black">Draft</option>
+     <option value="p" className="text-black">Published</option>
     </select>
-    <label htmlFor="category">Category</label>
-    <select name="category" id="category" className='text-black' >
-     {categories.map((category, index) => (
-      <option key={index} value={category.id} className='text-black'>{category.name}</option>
-     ))}
+    <label htmlFor="category" className="mb-2 font-medium">Category</label>
+    <select name="category" id="category" className="mb-4 p-2 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+     {categories.map((category, index) => (<option key={index} value={category.id} className="text-black">{category.name}</option>))}
     </select>
-    <input type="submit" />
+    <button type="submit" className="mt-4 bg-blue-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-300">Submit</button>
    </form>
   </div>
  );
