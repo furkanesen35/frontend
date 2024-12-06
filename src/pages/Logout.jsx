@@ -2,15 +2,20 @@ import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const LogoutComponent = () => {
  const { logoutUser, axiosInstance } = useContext(UserContext);
+ const navigate = useNavigate();
 
  const handleLogout = async () => {
   try {
    await axiosInstance.post("/account/api/logout/");
    logoutUser();
-   toast.success("Logout successful!", { position: "top-center" });
+   toast.success("Logout successful! Redrecting to Login", { position: "top-center" });
+   setTimeout(() => {
+    navigate("/login");
+   }, 3500);
   } catch (error) {
    console.error("Logout failed:", error);
    toast.error("Logout failed. Please try again.", { position: "top-center" });
