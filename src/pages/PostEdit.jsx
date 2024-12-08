@@ -3,6 +3,7 @@ import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PostDelete from '../components/PostDelete';
 
 const PostEdit = ({ slug }) => {
  const { userToken, profile, fetchProfile } = useContext(UserContext);
@@ -105,7 +106,10 @@ const PostEdit = ({ slug }) => {
         <option key={category.id} value={category.id}>{category.name}</option>
        ))}
       </select>
-      <button type="submit" className="p-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition-all duration-300 text-white font-semibold">Update Post</button>
+      <div className='flex flex-row justify-center items-center'>
+       <button type="submit" className="p-3 bg-blue-600 w-[80%] rounded-lg hover:bg-blue-700 transition-all duration-300 text-white font-semibold">Update Post</button>
+       <PostDelete slug={slug}/>
+      </div>
      </form>
      <ToastContainer />
     </div>
